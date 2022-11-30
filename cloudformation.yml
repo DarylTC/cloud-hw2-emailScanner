@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Spam Email Detection
 Parameters:
-  EndPointURL:
+  EndpointLink:
     Type: String
 Resources:
  
@@ -28,7 +28,7 @@ Resources:
           - LambdaFunctionEmail
           - Arn
       Principal: s3.amazonaws.com
-      SourceAccount: 524709025091
+      SourceAccount: 001943212251
       SourceArn: arn:aws:s3:::s1-email-bucket-hw3
  
  BucketPolicy:
@@ -52,7 +52,7 @@ Resources:
                 - "/*"
             Condition:
               StringEquals:
-                aws:Referer: '524709025091'
+                aws:Referer: '001943212251'
           - Sid: PublicReadForGetBucketObjects
             Effect: Allow
             Principal: '*'
@@ -95,7 +95,7 @@ Resources:
       Description: lambda function code for lf1-email-handler-hw3
       Environment:
         Variables:
-          ENDPOINT_NAME: !Ref EndPointURL
+          ENDPOINT_NAME: !Ref EndpointLink
       FunctionName: lf1-email-handler-hw3
       Handler: lambda_function.lambda_handler
       MemorySize: 512
